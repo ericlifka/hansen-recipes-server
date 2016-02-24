@@ -1,3 +1,2 @@
 require("babel-register");
-
-console.log('hi');
+require('./src/app');
