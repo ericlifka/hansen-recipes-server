@@ -37,8 +37,7 @@ passport.use(new LocalStrategy(function (username, password, done) {
 
 app.get('/', (req, res) => res.send("Hello World!"));
 
-app.post('/login', passport.authenticate('local'));
-app.get('/login', passport.authenticate('local'), function (req, res) {
+app.post('/login', passport.authenticate('local'), function (req, res) {
   res.json({msg: "success"});
 });
 
@@ -47,6 +46,11 @@ app.get('/api/users/me',
   function(req, res) {
     res.json({ id: req.user.id, username: req.user.username });
   });
+
+app.post('/logout', function(req, res){
+  req.logout();
+  res.json({ msg: "loggout success" });
+});
 
 app.listen(3000, () => console.log('listening on 3000'));
 
