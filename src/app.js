@@ -4,6 +4,27 @@ import passportLocal from 'passport-local';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import Sequelize from 'sequelize';
+
+var sequelize = new Sequelize('sqlite', 'username', 'password', {
+  host: 'localhost',
+  dialect: 'sqlite',
+
+  storage: './db.sqlite'
+});
+
+var User = sequelize.define('user', {
+  username: { type: Sequelize.STRING },
+  password: { type: Sequelize.STRING }
+});
+
+User.sync({force: true}).then(function () {
+  // Table created
+  return User.create({
+    username: 'testabc',
+    password: '123'
+  });
+});
 
 const LocalStrategy = passportLocal.Strategy;
 
