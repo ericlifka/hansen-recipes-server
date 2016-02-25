@@ -9,14 +9,11 @@ const LocalStrategy = passportLocal.Strategy;
 
 const app = express();
 
-//app.configure(function() {
-  app.use(cookieParser());
-  app.use(bodyParser());
-  app.use(session({ secret: 'keyboard cat' }));
-  app.use(passport.initialize());
-  app.use(passport.session());
-  //app.use(app.router);
-//});
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);
@@ -26,13 +23,31 @@ passport.deserializeUser(function (id, done) {
   done(null, { username: "deserialized-user", id: id });
 });
 
+function isAuthenticated(req, res, next) {
+  if (req && req.user && req.user.id) {
+    return next();
+  }
+  res.send(401);
+}
+
 passport.use(new LocalStrategy(function (username, password, done) {
   console.log(`auth request: ${username}, ${password}`);
   return done(null, { username: "test-user", id: "1" });
 }));
 
-
 app.get('/', (req, res) => res.send("Hello World!"));
+
+app.post('/login', passport.authenticate('local'));
+app.get('/login', passport.authenticate('local'), function (req, res) {
+  res.json({msg: "success"});
+});
+
+app.get('/api/users/me',
+  isAuthenticated,
+  function(req, res) {
+    res.json({ id: req.user.id, username: req.user.username });
+  });
+
 app.listen(3000, () => console.log('listening on 3000'));
 
 export default app;
