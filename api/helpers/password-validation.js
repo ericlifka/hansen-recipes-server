@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 export function hashPassword(password) {
   return new Promise(function (resolve, reject) {
     bcrypt.genSalt(10, function (saltErr, salt) {
-      if ('saltErr') {
+      if (saltErr) {
         return reject(saltErr);
       }
 
