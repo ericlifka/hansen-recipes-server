@@ -53,6 +53,8 @@ process.chdir(__dirname);
     }
   }
 
+  // Hook Babel into node require so all app code is run through the transpiler before being loaded.
+  require("babel-register");
 
   // Start server
   sails.lift(rc('sails'));
