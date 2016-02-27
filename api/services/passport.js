@@ -4,26 +4,20 @@ var passport = require('passport'),
 
 //helper functions
 function findById(id, fn) {
-  User.findOne(id).done(function (err, user) {
-    if (err) {
-      return fn(null, null);
-    } else {
-      return fn(null, user);
-    }
+  User.findOne(id).then(function (user) {
+    return fn(null, user);
+  }).catch(function (err) {
+    return fn(null, null);
   });
 }
 
 function findByUsername(u, fn) {
   User.findOne({
     username: u
-  }).done(function (err, user) {
-    // Error handling
-    if (err) {
-      return fn(null, null);
-      // The User was found successfully!
-    } else {
-      return fn(null, user);
-    }
+  }).then(function (user) {
+    return fn(null, user);
+  }).catch(function (err) {
+    return fn(null, null);
   });
 }
 
