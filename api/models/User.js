@@ -1,6 +1,6 @@
 import { hashPassword } from '../helpers/password-validation';
 
-export default {
+module.exports = {
   attributes: {
     username: {
       type: 'string',
