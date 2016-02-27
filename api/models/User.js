@@ -1,6 +1,6 @@
-var bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 
-module.exports = {
+export default {
   attributes: {
     username: {
       type: 'string',
@@ -11,22 +11,22 @@ module.exports = {
       type: 'string',
       required: true
     },
-    toJSON: function () {
+    toJSON() {
       var obj = this.toObject();
       delete obj.password;
       return obj;
     }
   },
 
-  beforeCreate: function (user, cb) {
+  beforeCreate(user, done) {
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(user.password, salt, function (err, hash) {
         if (err) {
           console.log(err);
-          cb(err);
+          done(err);
         } else {
           user.password = hash;
-          cb(null, user);
+          done(null, user);
         }
       });
     });
