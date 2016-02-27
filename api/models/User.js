@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import { hashPassword } from '../helpers/password-validation';
 
 export default {
   attributes: {
@@ -19,16 +19,11 @@ export default {
   },
 
   beforeCreate(user, done) {
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(user.password, salt, function (err, hash) {
-        if (err) {
-          console.log(err);
-          done(err);
-        } else {
-          user.password = hash;
-          done(null, user);
-        }
-      });
-    });
+    hashPassword(user.password)
+      .then(hash => {
+        user.password = hash;
+        return done(null, user);
+      })
+      .catch(done);
   }
 };
