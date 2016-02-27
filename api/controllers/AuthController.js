@@ -23,6 +23,18 @@ module.exports = {
   logout: function (req, res) {
     req.logout();
     res.send('logout successful');
+  },
+  register: function (req, res) {
+    var username = req.param('username');
+    var password = req.param('password');
+    User.create({
+      username: username,
+      password: password
+    }).then(function (user) {
+      res.json({ status: "success", msg: "login to continue" });
+    }).catch(function (err) {
+      res.json({ status: "error", error: err });
+    });
   }
 };
 
