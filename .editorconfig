@@ -6,13 +6,10 @@ root = true
 
 
 [*]
->>>>>>> 0949e7d54be3bbd0f934c5992373ed87f5011e1f
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
-<<<<<<< HEAD
-=======
 indent_style = space
 indent_size = 2
 
@@ -22,4 +19,3 @@ indent_size = 2
 
 [*.{diff,md}]
 trim_trailing_whitespace = false
->>>>>>> 0949e7d54be3bbd0f934c5992373ed87f5011e1f
