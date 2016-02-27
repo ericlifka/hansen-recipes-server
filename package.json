@@ -1,8 +1,10 @@
 {
   "name": "hansen-recipes-server",
+  "author": "Eric Lifka",
+  "license": "MIT",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.0.1",
+  "description": "Server for https://github.com/ericlifka/hansen-recipes-client",
   "keywords": [],
   "dependencies": {
     "ejs": "2.3.4",
@@ -32,6 +34,7 @@
     "type": "git",
     "url": "git://github.com/ericlifka/hansen-recipes-server.git"
   },
-  "author": "ericlifka",
-  "license": ""
+  "bugs": {
+    "url": "https://github.com/ericlifka/hansen-recipes-server/issues"
+  }
 }
