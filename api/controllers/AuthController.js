@@ -32,6 +32,11 @@ module.exports = {
     }).catch(function (err) {
       res.json({ status: "error", error: err });
     });
+  },
+  session: function (req, res) {
+    res.json({
+      user: req.user.toJSON()
+    });
   }
 };
 

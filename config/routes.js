@@ -47,6 +47,10 @@ module.exports.routes = {
   '/register': {
     controller: 'AuthController',
     action: 'register'
+  },
+  '/session': {
+    controller: 'AuthController',
+    action: 'session'
   }
 
   /***************************************************************************
