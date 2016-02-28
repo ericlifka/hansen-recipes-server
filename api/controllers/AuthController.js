@@ -2,20 +2,21 @@ import passport from 'passport';
 
 module.exports = {
   login(req, res) {
-    passport.authenticate('local', function (err, user, info) {
-      if ((err) || (!user)) {
-        return res.send({
-          message: 'login failed'
-        });
-        res.send(err);
+    const authStrategy = passport.authenticate('local', function (authError, user) {
+      if (authError) {
+        return res.send(400, { error: authError });
       }
-      req.logIn(user, function (err) {
-        if (err) res.send(err);
-        return res.send({
-          message: 'login successful'
-        });
+
+      req.logIn(user, function (loginError) {
+        if (loginError) {
+          return res.send(400, { error: loginError });
+        }
+
+        return res.send({ user });
       });
-    })(req, res);
+    });
+
+    return authStrategy(req, res);
   },
 
   logout(req, res) {
