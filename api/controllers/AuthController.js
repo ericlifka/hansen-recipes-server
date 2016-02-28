@@ -1,7 +1,7 @@
-var passport = require('passport');
-module.exports = {
+import passport from 'passport';
 
-  login: function (req, res) {
+module.exports = {
+  login(req, res) {
     passport.authenticate('local', function (err, user, info) {
       if ((err) || (!user)) {
         return res.send({
@@ -17,25 +17,26 @@ module.exports = {
       });
     })(req, res);
   },
-  logout: function (req, res) {
+
+  logout(req, res) {
     req.logout();
-    res.send('logout successful');
+    res.json({ status: "success" });
   },
-  register: function (req, res) {
-    var username = req.param('username');
-    var password = req.param('password');
-    User.create({
-      username: username,
-      password: password
-    }).then(function (user) {
-      res.json({ status: "success", msg: "login to continue" });
-    }).catch(function (err) {
-      res.json({ status: "error", error: err });
-    });
+
+  register(req, res) {
+    const username = req.param('username');
+    const password = req.param('password');
+
+    if (!username || !password) {
+      return res.json(400, { error: "Username and Password are both required fields" });
+    }
+
+    User.create({ username, password })
+      .then(user => res.json({ user: user.toJSON() }))
+      .catch(error => res.json({ error }));
   },
-  session: function (req, res) {
-    res.json({
-      user: req.user.toJSON()
-    });
+
+  session(req, res) {
+    res.json({ user: req.user.toJSON() });
   }
 };
