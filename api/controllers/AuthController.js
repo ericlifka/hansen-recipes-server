@@ -27,6 +27,11 @@ module.exports = {
   register(req, res) {
     const username = req.param('username');
     const password = req.param('password');
+    const signupKey = req.param('signupKey');
+
+    if (sails.config.secrets.signupKey !== signupKey) {
+      return res.json(401, { error: "Invalid signup key" });
+    }
 
     if (!username || !password) {
       return res.json(400, { error: "Username and Password are both required fields" });
