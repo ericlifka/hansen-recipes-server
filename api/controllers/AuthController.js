@@ -39,7 +39,7 @@ module.exports = {
 
     User.create({ username, password })
       .then(user => res.json({ user: user.toJSON() }))
-      .catch(error => res.json({ error }));
+      .catch(error => res.json(400, { error: "Couldn't create user" }));
   },
 
   session(req, res) {
