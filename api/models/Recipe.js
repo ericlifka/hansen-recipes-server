@@ -8,7 +8,20 @@
 module.exports = {
 
   attributes: {
+    name: {
+      type: 'string',
+      required: true
+    },
 
+    ingredientMeasurements: {
+      collection: 'measurement',
+      via: 'recipe'
+    },
+
+    instructionSteps: {
+      collection: 'step',
+      via: 'recipe'
+    }
   }
 };
 
