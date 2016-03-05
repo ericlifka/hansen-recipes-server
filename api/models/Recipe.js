@@ -13,12 +13,12 @@ module.exports = {
       required: true
     },
 
-    ingredientMeasurements: {
+    measurements: {
       collection: 'measurement',
       via: 'recipe'
     },
 
-    instructionSteps: {
+    steps: {
       collection: 'step',
       via: 'recipe'
     }
