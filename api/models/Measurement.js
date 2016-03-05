@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
     quantity: {
-      type: 'number',
+      type: 'float',
       required: true
     },
 

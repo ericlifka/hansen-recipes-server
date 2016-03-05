@@ -14,7 +14,7 @@ module.exports = {
     },
 
     ordinal: {
-      type: 'number',
+      type: 'integer',
       required: true
     },
 
