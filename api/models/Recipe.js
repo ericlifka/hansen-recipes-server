@@ -21,6 +21,11 @@ module.exports = {
     steps: {
       collection: 'step',
       via: 'recipe'
+    },
+
+    tags: {
+      collection: 'tag',
+      via: 'recipes'
     }
   }
 };
