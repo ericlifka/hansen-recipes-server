@@ -6,12 +6,9 @@
  */
 
 module.exports = {
-  autoPK: false,
-
   attributes: {
     name: {
       type: 'string',
-      primaryKey: true,
       required: true,
       unique: true
     },
