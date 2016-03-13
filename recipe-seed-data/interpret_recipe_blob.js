@@ -15,6 +15,7 @@ Object.keys(textBlobs).forEach(file => {
     let name = recipeLines.shift();
     let ingredients = [];
     let steps = recipeLines;
+    let tags = [ file ];
     while (recipeLines.length > 0) {
       // Each ingredient line starts with a number, once we hit the first non number we've reached the steps and we can
       // stop pulling the lines into the ingredients array.
@@ -26,7 +27,7 @@ Object.keys(textBlobs).forEach(file => {
       }
     }
 
-    return { name, ingredients, steps };
+    return { name, ingredients, steps, tags };
   });
 
   recipes.forEach(recipe => {
