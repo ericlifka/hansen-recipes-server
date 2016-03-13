@@ -6,6 +6,7 @@ let textBlobs = { };
 files.forEach(file => {
   textBlobs[ file ] = fs.readFileSync(`./${file}.txt`, "utf8");
 });
+let allRecipes = [ ];
 
 Object.keys(textBlobs).forEach(file => {
   let textBlob = textBlobs[ file ];
@@ -16,6 +17,7 @@ Object.keys(textBlobs).forEach(file => {
     let ingredients = [];
     let steps = recipeLines;
     let tags = [ file ];
+
     while (recipeLines.length > 0) {
       // Each ingredient line starts with a number, once we hit the first non number we've reached the steps and we can
       // stop pulling the lines into the ingredients array.
@@ -43,9 +45,10 @@ Object.keys(textBlobs).forEach(file => {
     })
   });
 
-  console.log(recipes[0]);
-
+  allRecipes = allRecipes.concat(recipes);
 });
+
+console.log(allRecipes[ 0 ]);
 
 //recipes = recipes.map(s => ({
 //  section: s[0],
