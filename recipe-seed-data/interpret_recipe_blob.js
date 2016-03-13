@@ -29,14 +29,14 @@ recipes.forEach(recipe => {
     let parts = ingredientString.split(' ');
 
     let quantity = parts.shift();
-    let unit = parts.shift();
+    let unit = parts.shift().split('_').join(' ');
     let ingredient = parts.join(' ');
 
     return { quantity, unit, ingredient };
   })
 });
 
-console.log(recipes[0]);
+console.log(recipes[1]);
 
 //recipes = recipes.map(s => ({
 //  section: s[0],
