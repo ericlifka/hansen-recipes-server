@@ -23,6 +23,19 @@ recipes = recipes.map(recipeLines => {
   return { name, ingredients, steps };
 });
 
+recipes.forEach(recipe => {
+  recipe.ingredients = recipe.ingredients.map(ingredientString => {
+    // expecting ingredients to be strings of the form '2/3 cups unbleached baking flour'
+    let parts = ingredientString.split(' ');
+
+    let quantity = parts.shift();
+    let unit = parts.shift();
+    let ingredient = parts.join(' ');
+
+    return { quantity, unit, ingredient };
+  })
+});
+
 console.log(recipes[0]);
 
 //recipes = recipes.map(s => ({
