@@ -1,7 +1,7 @@
 "use strict";
 const fs = require('fs');
 
-let textblob = fs.readFileSync('./recipes.raw', "utf8");
+let textblob = fs.readFileSync('./appetizers.txt', "utf8");
 let sections = textblob.split('***');
 sections.shift(); // first section is empty
 
