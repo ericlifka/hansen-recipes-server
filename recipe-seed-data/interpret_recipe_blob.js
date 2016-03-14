@@ -1,6 +1,10 @@
 "use strict";
 const fs = require('fs');
 
+let mutations = [
+  recipe => recipe.ingredients.forEach(ingredient => ingredient.ingredient = ingredient.ingredient.toLowerCase())
+];
+
 let files = [ 'appetizers', 'bread' ];
 let textBlobs = { };
 files.forEach(file => {
@@ -47,6 +51,10 @@ Object.keys(textBlobs).forEach(file => {
 
   allRecipes = allRecipes.concat(recipes);
 });
+
+// sequentially apply all the mutation functions to each recipe in turn
+mutations.forEach(muteFn =>
+  allRecipes.forEach(muteFn));
 
 let ingredients = { };
 let measurements = { };
