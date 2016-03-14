@@ -1,7 +1,7 @@
 "use strict";
 const fs = require('fs');
 
-let files = [ 'appetizers' ];
+let files = [ 'appetizers', 'bread' ];
 let textBlobs = { };
 files.forEach(file => {
   textBlobs[ file ] = fs.readFileSync(`./${file}.txt`, "utf8");
@@ -48,7 +48,31 @@ Object.keys(textBlobs).forEach(file => {
   allRecipes = allRecipes.concat(recipes);
 });
 
-console.log(allRecipes[ 0 ]);
+let ingredients = { };
+let measurements = { };
+
+allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
+  let unit = ingredient.unit;
+  let ingredientName = ingredient.ingredient;
+
+  if (!ingredients[ ingredientName ]) ingredients[ ingredientName ] = 0;
+  if (!measurements[ unit ]) measurements[ unit ] = 0;
+
+  ingredients[ ingredientName ]++;
+  measurements[ unit ]++;
+}));
+
+console.log(measurements);
+
+//console.log(JSON.stringify(allRecipes, null, '    '));
+
+/**
+ * mutations that need to happen:
+ *  - normalize measurement names
+ *  - see if normalization of ingredients is plausible
+ *
+ *  - remove empty steps on recipes
+ */
 
 //recipes = recipes.map(s => ({
 //  section: s[0],
