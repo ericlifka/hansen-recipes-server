@@ -18,6 +18,7 @@ let unitConversions = {
 };
 let mutations = [
   recipe => recipe.ingredients.forEach(ingredient => ingredient.ingredient = ingredient.ingredient.toLowerCase()),
+  recipe => recipe.ingredients.forEach(ingredient => ingredient.unit = ingredient.unit.split('_').join(' ')),
   recipe => recipe.ingredients.forEach(ingredient => ingredient.unit = unitConversions[ ingredient.unit ] || ingredient.unit),
   recipe => recipe.steps = recipe.steps.filter(step => step.length > 0)
 ];
@@ -59,7 +60,7 @@ Object.keys(textBlobs).forEach(file => {
       let parts = ingredientString.split(' ');
 
       let quantity = parts.shift();
-      let unit = parts.shift().split('_').join(' ');
+      let unit = parts.shift();
       let ingredient = parts.join(' ');
 
       return { quantity, unit, ingredient };
