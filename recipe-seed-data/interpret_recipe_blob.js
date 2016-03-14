@@ -56,21 +56,26 @@ Object.keys(textBlobs).forEach(file => {
 mutations.forEach(muteFn =>
   allRecipes.forEach(muteFn));
 
+
+let quantities = { };
 let ingredients = { };
-let measurements = { };
+let units = { };
 
 allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
+  let quantity = ingredient.quantity;
   let unit = ingredient.unit;
   let ingredientName = ingredient.ingredient;
 
+  if (!quantities[ quantity ]) quantities[ quantity ] = 0;
   if (!ingredients[ ingredientName ]) ingredients[ ingredientName ] = 0;
-  if (!measurements[ unit ]) measurements[ unit ] = 0;
+  if (!units[ unit ]) units[ unit ] = 0;
 
+  quantities[ quantity ]++;
   ingredients[ ingredientName ]++;
-  measurements[ unit ]++;
+  units[ unit ]++;
 }));
 
-console.log(ingredients);
+console.log(quantities);
 
 //console.log(JSON.stringify(allRecipes, null, '    '));
 
