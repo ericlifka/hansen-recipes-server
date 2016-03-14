@@ -1,8 +1,24 @@
 "use strict";
 const fs = require('fs');
 
+let unitConversions = {
+  't': "tsp",
+  't.': "tsp",
+  'T': "Tbsp",
+  'T.': "Tbsp",
+  'c': "cups",
+  'c.': "cups",
+  'cup': "cups",
+  'oz.': 'oz',
+  'pinch': 'dash',
+  'pkg.': 'package',
+  'lb.': 'lb',
+  'qt.': 'qt',
+  'pt.': 'pt'
+};
 let mutations = [
-  recipe => recipe.ingredients.forEach(ingredient => ingredient.ingredient = ingredient.ingredient.toLowerCase())
+  recipe => recipe.ingredients.forEach(ingredient => ingredient.ingredient = ingredient.ingredient.toLowerCase()),
+  recipe => recipe.ingredients.forEach(ingredient => ingredient.unit = unitConversions[ ingredient.unit ] || ingredient.unit)
 ];
 
 let files = [ 'appetizers', 'bread' ];
@@ -57,6 +73,7 @@ mutations.forEach(muteFn =>
   allRecipes.forEach(muteFn));
 
 
+// --- VALIDATION METRICS --- //
 let quantities = { };
 let ingredients = { };
 let units = { };
@@ -75,9 +92,7 @@ allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
   units[ unit ]++;
 }));
 
-console.log(quantities);
-
-//console.log(JSON.stringify(allRecipes, null, '    '));
+console.log(units);
 
 /**
  * mutations that need to happen:
@@ -86,29 +101,3 @@ console.log(quantities);
  *
  *  - remove empty steps on recipes
  */
-
-//recipes = recipes.map(s => ({
-//  section: s[0],
-//  recipes: s.slice(1)
-//}));
-//
-//recipes.forEach(s => {
-//  s.recipes = s.recipes.map(r => {
-//    let lines = r.split('\n');
-//
-//    return {
-//      name: lines[0],
-//      blob: lines.slice(1)
-//    };
-//  });
-//});
-
-
-//sections.forEach(function (s) {
-//  //s.forEach(function (r) {
-//  //  console.log(r.length);
-//  //});
-//  //console.log('-');
-//});
-
-//console.log(recipes[0 ].recipes[0]);
