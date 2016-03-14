@@ -18,7 +18,8 @@ let unitConversions = {
 };
 let mutations = [
   recipe => recipe.ingredients.forEach(ingredient => ingredient.ingredient = ingredient.ingredient.toLowerCase()),
-  recipe => recipe.ingredients.forEach(ingredient => ingredient.unit = unitConversions[ ingredient.unit ] || ingredient.unit)
+  recipe => recipe.ingredients.forEach(ingredient => ingredient.unit = unitConversions[ ingredient.unit ] || ingredient.unit),
+  recipe => recipe.steps = recipe.steps.filter(step => step.length > 0)
 ];
 
 let files = [ 'appetizers', 'bread' ];
@@ -92,7 +93,7 @@ allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
   units[ unit ]++;
 }));
 
-console.log(units);
+console.log(JSON.stringify(allRecipes, null, '  '));
 
 /**
  * mutations that need to happen:
