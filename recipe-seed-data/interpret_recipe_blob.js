@@ -62,7 +62,7 @@ allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
   measurements[ unit ]++;
 }));
 
-console.log(measurements);
+console.log(ingredients);
 
 //console.log(JSON.stringify(allRecipes, null, '    '));
 
