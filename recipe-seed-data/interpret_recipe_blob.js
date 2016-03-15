@@ -1,7 +1,7 @@
 "use strict";
 const fs = require('fs');
 const path = require('path');
-const request = require('request');
+const request = require('request').defaults({jar: true});
 
 let unitConversions = {
   't': "tsp",
@@ -97,10 +97,11 @@ allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
 }));
 
 //console.log(JSON.stringify(allRecipes, null, '  '));
+const url = target => `http://localhost:1337/${target}`;
 
 request.post({
   /** This is ONLY meant to work on localhost, the signup key will be different in "prod" preventing this script from running **/
-  url: "http://localhost:1337/register",
+  url: url("register"),
   form: {
     username: "db_access_user",
     password: "test1234",
@@ -108,12 +109,21 @@ request.post({
   }
 }, function (error, response, body) {
   console.log(body);
-});
 
-//request({
-//  method: "POST",
-//  uri: "http://localhost:1337/ingredients",
-//  data: JSON.stringify({name:"test_post_ingredient"})
-//}, function (error, response, body) {
-//  console.log(arguments);
-//});
+  request.post({
+    url: url("login"),
+    form: {
+      username: "db_access_user",
+      password: "test1234"
+    }
+  }, function (error, response, body) {
+    console.log(body);
+
+    request.post({
+      url: url("ingredients"),
+      form: { name: "test_post_ingredient" }
+    }, function (error, response, body) {
+      console.log(body);
+    });
+  });
+});
