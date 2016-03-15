@@ -1,7 +1,8 @@
 "use strict";
+const Promise = require("bluebird");
 const fs = require('fs');
 const path = require('path');
-const request = require('request').defaults({jar: true});
+const request = require('request').defaults({ jar: true });
 
 let unitConversions = {
   't': "tsp",
@@ -26,11 +27,11 @@ let mutations = [
 ];
 
 let files = [ 'appetizers', 'bread' ];
-let textBlobs = { };
+let textBlobs = {};
 files.forEach(file => {
   textBlobs[ file ] = fs.readFileSync(path.join(__dirname, `./${file}.txt`), "utf8");
 });
-let allRecipes = [ ];
+let allRecipes = [];
 
 Object.keys(textBlobs).forEach(file => {
   let textBlob = textBlobs[ file ];
@@ -78,9 +79,9 @@ mutations.forEach(muteFn =>
 
 
 // --- VALIDATION METRICS --- //
-let quantities = { };
-let ingredients = { };
-let units = { };
+let quantities = {};
+let ingredients = {};
+let units = {};
 
 allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
   let quantity = ingredient.quantity;
@@ -99,26 +100,26 @@ allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
 //console.log(JSON.stringify(allRecipes, null, '  '));
 const url = target => `http://localhost:1337/${target}`;
 
-request.post({
-  /** This is ONLY meant to work on localhost, the signup key will be different in "prod" preventing this script from running **/
+const register = () => new Promise(resolve => request.post({
   url: url("register"),
   form: {
     username: "db_access_user",
     password: "test1234",
     signupKey: "abc123"
   }
-}, function (error, response, body) {
-  console.log(body);
+}, resolve));
 
-  request.post({
-    url: url("login"),
-    form: {
-      username: "db_access_user",
-      password: "test1234"
-    }
-  }, function (error, response, body) {
-    console.log(body);
+const login = () => new Promise(resolve => request.post({
+  url: url("login"),
+  form: {
+    username: "db_access_user",
+    password: "test1234"
+  }
+}, resolve));
 
+register()
+  .then(() => login())
+  .then(() => {
     request.post({
       url: url("ingredients"),
       form: { name: "test_post_ingredient" }
@@ -126,4 +127,3 @@ request.post({
       console.log(body);
     });
   });
-});

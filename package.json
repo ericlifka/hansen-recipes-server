@@ -43,6 +43,7 @@
     "url": "https://github.com/ericlifka/hansen-recipes-server/issues"
   },
   "devDependencies": {
+    "bluebird": "^3.3.4",
     "request": "^2.69.0"
   }
 }
