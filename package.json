@@ -41,5 +41,8 @@
   },
   "bugs": {
     "url": "https://github.com/ericlifka/hansen-recipes-server/issues"
+  },
+  "devDependencies": {
+    "request": "^2.69.0"
   }
 }

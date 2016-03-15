@@ -1,5 +1,7 @@
 "use strict";
 const fs = require('fs');
+const path = require('path');
+const request = require('request');
 
 let unitConversions = {
   't': "tsp",
@@ -26,7 +28,7 @@ let mutations = [
 let files = [ 'appetizers', 'bread' ];
 let textBlobs = { };
 files.forEach(file => {
-  textBlobs[ file ] = fs.readFileSync(`./${file}.txt`, "utf8");
+  textBlobs[ file ] = fs.readFileSync(path.join(__dirname, `./${file}.txt`), "utf8");
 });
 let allRecipes = [ ];
 
@@ -94,12 +96,24 @@ allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
   units[ unit ]++;
 }));
 
-console.log(JSON.stringify(allRecipes, null, '  '));
+//console.log(JSON.stringify(allRecipes, null, '  '));
 
-/**
- * mutations that need to happen:
- *  - normalize measurement names
- *  - see if normalization of ingredients is plausible
- *
- *  - remove empty steps on recipes
- */
+request.post({
+  /** This is ONLY meant to work on localhost, the signup key will be different in "prod" preventing this script from running **/
+  url: "http://localhost:1337/register",
+  form: {
+    username: "db_access_user",
+    password: "test1234",
+    signupKey: "abc123"
+  }
+}, function (error, response, body) {
+  console.log(body);
+});
+
+//request({
+//  method: "POST",
+//  uri: "http://localhost:1337/ingredients",
+//  data: JSON.stringify({name:"test_post_ingredient"})
+//}, function (error, response, body) {
+//  console.log(arguments);
+//});
