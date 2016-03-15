@@ -97,33 +97,33 @@ allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
   units[ unit ]++;
 }));
 
+const post = Promise.promisify(request.post);
 //console.log(JSON.stringify(allRecipes, null, '  '));
 const url = target => `http://localhost:1337/${target}`;
 
-const register = () => new Promise(resolve => request.post({
+const register = () => post({
   url: url("register"),
   form: {
     username: "db_access_user",
     password: "test1234",
     signupKey: "abc123"
   }
-}, resolve));
+});
 
-const login = () => new Promise(resolve => request.post({
+const login = () => post({
   url: url("login"),
   form: {
     username: "db_access_user",
     password: "test1234"
   }
-}, resolve));
+});
 
 register()
   .then(() => login())
-  .then(() => {
-    request.post({
-      url: url("ingredients"),
-      form: { name: "test_post_ingredient" }
-    }, function (error, response, body) {
-      console.log(body);
-    });
+  .then(() => post({
+    url: url("ingredients"),
+    form: { name: "test_post_ingredient_4" }
+  }))
+  .then(function (result) {
+    console.log(result.body);
   });
