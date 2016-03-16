@@ -95,29 +95,43 @@ allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
   units[ unit ]++;
 }));
 
-console.log(ingredients);
-return;
-
-const url = target => `http://localhost:1337/${target}`;
+const endpoint = target => `http://localhost:1337/${target}`;
 const post = Promise.promisify(request.post);
 
 post({
-  url: url("register"),
+  url: endpoint("register"),
   form: {
     username: "db_access_user",
     password: "test1234",
     signupKey: "abc123"
   }
 }).then(() => post({
-  url: url("login"),
+  url: endpoint("login"),
   form: {
     username: "db_access_user",
     password: "test1234"
   }
-})).then(() => post({
-  url: url("ingredients"),
-  form: { name: "test_post_ingredient_5" }
-})).then(function (result) {
-  console.log(result.body);
-});
+}))
+  .then(() => createIngredients())
+  .then(() => console.log('done'));
+
+const entities = {
+  ingredients: { },
+  recipes: { },
+  measurements: { },
+  steps: { }
+};
+
+function createIngredients() {
+  let url = endpoint("ingredients");
+  let defer = Promise.defer();
+  let promise = defer.promise;
+
+  Object.keys(ingredients).forEach(name => {
+    promise = promise.then(() => post({ url, form: { name } }));
+  });
+
+  defer.resolve('kick off the chain');
+  return promise;
+}
 
