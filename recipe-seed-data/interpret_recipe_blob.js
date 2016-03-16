@@ -128,7 +128,12 @@ function createIngredients() {
   let promise = defer.promise;
 
   Object.keys(ingredients).forEach(name => {
-    promise = promise.then(() => post({ url, form: { name } }));
+    promise = promise.then(() =>
+      post({ url, form: { name } })
+        .then(result => {
+          console.log(result.body);
+        })
+    );
   });
 
   defer.resolve('kick off the chain');
