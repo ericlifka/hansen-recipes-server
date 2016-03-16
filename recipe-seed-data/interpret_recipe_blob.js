@@ -99,7 +99,8 @@ const endpoint = target => `http://localhost:1337/${target}`;
 const post = Promise.promisify(request.post);
 const entities = {
   ingredients: { },
-  recipes: { }
+  recipes: { },
+  tags: { }
 };
 
 post({
@@ -116,6 +117,7 @@ post({
     password: "test1234"
   }
 }))
+  .then(createTags)
   .then(createIngredients)
   .then(createRecipes)
   .then(createSteps)
@@ -172,6 +174,25 @@ function createSteps() {
       promise = promise.then(() =>
         post({ url, form: { text, ordinal, recipe: id }}));
     });
+  });
+
+  defer.resolve('kick off the chain');
+  return promise;
+}
+
+function createTags() {
+  console.log('Creating Tags...');
+  let url = endpoint("tags");
+  let defer = Promise.defer();
+  let promise = defer.promise;
+
+  files.forEach(tag => {
+    promise = promise.then(() =>
+      post({ url, form: { name: tag } })
+        .then(result => {
+          let entity = JSON.parse(result.body);
+          entities.tags[entity.name] = entity.id;
+        }));
   });
 
   defer.resolve('kick off the chain');
