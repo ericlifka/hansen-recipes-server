@@ -116,9 +116,9 @@ post({
     password: "test1234"
   }
 }))
-  .then(() => createIngredients())
-  .then(() => createRecipes())
-  .then(() => createSteps())
+  .then(createIngredients)
+  .then(createRecipes)
+  .then(createSteps)
   .then(() => console.log(entities));
 
 function createIngredients() {
