@@ -118,6 +118,7 @@ post({
 }))
   .then(() => createIngredients())
   .then(() => createRecipes())
+  .then(() => createSteps())
   .then(() => console.log(entities));
 
 function createIngredients() {
@@ -132,8 +133,7 @@ function createIngredients() {
         .then(result => {
           let entity = JSON.parse(result.body);
           entities.ingredients[entity.name] = entity.id;
-        })
-    );
+        }));
   });
 
   defer.resolve('kick off the chain');
@@ -152,7 +152,26 @@ function createRecipes() {
         .then(result => {
           let entity = JSON.parse(result.body);
           entities.recipes[entity.name] = entity.id;
-        }))
+        }));
+  });
+
+  defer.resolve('kick off the chain');
+  return promise;
+}
+
+function createSteps() {
+  console.log('Adding Steps to recipes...');
+  let url = endpoint('steps');
+  let defer = Promise.defer();
+  let promise = defer.promise;
+
+  allRecipes.forEach(recipe => {
+    let id = entities.recipes[ recipe.name ];
+
+    recipe.steps.forEach((text, ordinal) => {
+      promise = promise.then(() =>
+        post({ url, form: { text, ordinal, recipe: id }}));
+    });
   });
 
   defer.resolve('kick off the chain');
