@@ -99,9 +99,7 @@ const endpoint = target => `http://localhost:1337/${target}`;
 const post = Promise.promisify(request.post);
 const entities = {
   ingredients: { },
-  recipes: { },
-  measurements: { },
-  steps: { }
+  recipes: { }
 };
 
 post({
@@ -119,7 +117,8 @@ post({
   }
 }))
   .then(() => createIngredients())
-  .then(() => console.log(entities.ingredients));
+  .then(() => createRecipes())
+  .then(() => console.log(entities));
 
 function createIngredients() {
   console.log('Creating Ingredient entities...');
@@ -141,3 +140,21 @@ function createIngredients() {
   return promise;
 }
 
+function createRecipes() {
+  console.log('Creating Recipe entities...');
+  let url = endpoint('recipes');
+  let defer = Promise.defer();
+  let promise = defer.promise;
+
+  allRecipes.forEach(recipe => {
+    promise = promise.then(() =>
+      post({ url, form: { name: recipe.name } })
+        .then(result => {
+          let entity = JSON.parse(result.body);
+          entities.recipes[entity.name] = entity.id;
+        }))
+  });
+
+  defer.resolve('kick off the chain');
+  return promise;
+}
