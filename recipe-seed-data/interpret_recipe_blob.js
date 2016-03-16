@@ -26,7 +26,7 @@ let mutations = [
   recipe => recipe.steps = recipe.steps.filter(step => step.length > 0)
 ];
 
-let files = [ 'appetizers', 'bread' ];
+let files = [ 'appetizers', 'bread', 'breakfast-for-dinner' ];
 let textBlobs = {};
 files.forEach(file => {
   textBlobs[ file ] = fs.readFileSync(path.join(__dirname, `./${file}.txt`), "utf8");
@@ -77,8 +77,6 @@ Object.keys(textBlobs).forEach(file => {
 mutations.forEach(muteFn =>
   allRecipes.forEach(muteFn));
 
-
-// --- VALIDATION METRICS --- //
 let quantities = {};
 let ingredients = {};
 let units = {};
@@ -96,6 +94,9 @@ allRecipes.forEach(recipe => recipe.ingredients.forEach(ingredient => {
   ingredients[ ingredientName ]++;
   units[ unit ]++;
 }));
+
+console.log(ingredients);
+return;
 
 const url = target => `http://localhost:1337/${target}`;
 const post = Promise.promisify(request.post);
@@ -119,3 +120,4 @@ post({
 })).then(function (result) {
   console.log(result.body);
 });
+
