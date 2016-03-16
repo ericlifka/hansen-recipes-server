@@ -120,8 +120,28 @@ post({
   .then(createTags)
   .then(createIngredients)
   .then(createRecipes)
+  .then(tagRecipes)
   .then(createSteps)
   .then(() => console.log(entities));
+
+function createTags() {
+  console.log('Creating Tags...');
+  let url = endpoint("tags");
+  let defer = Promise.defer();
+  let promise = defer.promise;
+
+  files.forEach(tag => {
+    promise = promise.then(() =>
+      post({ url, form: { name: tag } })
+        .then(result => {
+          let entity = JSON.parse(result.body);
+          entities.tags[entity.name] = entity.id;
+        }));
+  });
+
+  defer.resolve('kick off the chain');
+  return promise;
+}
 
 function createIngredients() {
   console.log('Creating Ingredient entities...');
@@ -161,6 +181,24 @@ function createRecipes() {
   return promise;
 }
 
+function tagRecipes() {
+  console.log('Associating Recipes and Tags...');
+  let defer = Promise.defer();
+  let promise = defer.promise;
+
+  allRecipes.forEach(recipe => {
+    let recipeId = entities.recipes[ recipe.name ];
+    let tagId = entities.tags[ recipe.tags[ 0 ] ];
+    let url = `recipes/${recipeId}/tags/${tagId}`;
+    console.log(url);
+    promise = promise.then(() =>
+      post(endpoint(url)));
+  });
+
+  defer.resolve('kick off the chain');
+  return promise;
+}
+
 function createSteps() {
   console.log('Adding Steps to recipes...');
   let url = endpoint('steps');
@@ -174,25 +212,6 @@ function createSteps() {
       promise = promise.then(() =>
         post({ url, form: { text, ordinal, recipe: id }}));
     });
-  });
-
-  defer.resolve('kick off the chain');
-  return promise;
-}
-
-function createTags() {
-  console.log('Creating Tags...');
-  let url = endpoint("tags");
-  let defer = Promise.defer();
-  let promise = defer.promise;
-
-  files.forEach(tag => {
-    promise = promise.then(() =>
-      post({ url, form: { name: tag } })
-        .then(result => {
-          let entity = JSON.parse(result.body);
-          entities.tags[entity.name] = entity.id;
-        }));
   });
 
   defer.resolve('kick off the chain');
