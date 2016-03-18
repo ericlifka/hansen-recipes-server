@@ -120,9 +120,11 @@ post({
   .then(createTags)
   .then(createIngredients)
   .then(createRecipes)
+  .then(createMeasurements)
   .then(tagRecipes)
   .then(createSteps)
-  .then(() => console.log(entities));
+  .then(() => console.log('done!'))
+  .catch(error => console.log('blew up: ', error));
 
 function createTags() {
   console.log('Creating Tags...');
@@ -135,7 +137,7 @@ function createTags() {
       post({ url, form: { name: tag } })
         .then(result => {
           let entity = JSON.parse(result.body);
-          entities.tags[entity.name] = entity.id;
+          entities.tags[ entity.name ] = entity.id;
         }));
   });
 
@@ -154,7 +156,7 @@ function createIngredients() {
       post({ url, form: { name } })
         .then(result => {
           let entity = JSON.parse(result.body);
-          entities.ingredients[entity.name] = entity.id;
+          entities.ingredients[ entity.name ] = entity.id;
         }));
   });
 
@@ -173,8 +175,35 @@ function createRecipes() {
       post({ url, form: { name: recipe.name } })
         .then(result => {
           let entity = JSON.parse(result.body);
-          entities.recipes[entity.name] = entity.id;
+          entities.recipes[ entity.name ] = entity.id;
         }));
+  });
+
+  defer.resolve('kick off the chain');
+  return promise;
+}
+
+function createMeasurements() {
+  console.log('Creating Measurements to link ingredients to recipes...');
+  let url = endpoint('measurements');
+  let defer = Promise.defer();
+  let promise = defer.promise;
+
+  allRecipes.forEach(recipe => {
+
+    let recipeId = entities.recipes[ recipe.name ];
+    recipe.ingredients.forEach(ingredient => {
+
+      let ingredientId = entities.ingredients[ ingredient.ingredient ];
+      promise = promise.then(() => post({
+        url, form: {
+          recipe: recipeId,
+          ingredient: ingredientId,
+          quantity: ingredient.quantity,
+          unit: ingredient.unit
+        }
+      }));
+    })
   });
 
   defer.resolve('kick off the chain');
@@ -189,10 +218,8 @@ function tagRecipes() {
   allRecipes.forEach(recipe => {
     let recipeId = entities.recipes[ recipe.name ];
     let tagId = entities.tags[ recipe.tags[ 0 ] ];
-    let url = `recipes/${recipeId}/tags/${tagId}`;
-    console.log(url);
-    promise = promise.then(() =>
-      post(endpoint(url)));
+
+    promise = promise.then(() => post(endpoint(`recipes/${recipeId}/tags/${tagId}`)));
   });
 
   defer.resolve('kick off the chain');
@@ -206,11 +233,11 @@ function createSteps() {
   let promise = defer.promise;
 
   allRecipes.forEach(recipe => {
-    let id = entities.recipes[ recipe.name ];
+    let recipeId = entities.recipes[ recipe.name ];
 
     recipe.steps.forEach((text, ordinal) => {
       promise = promise.then(() =>
-        post({ url, form: { text, ordinal, recipe: id }}));
+        post({ url, form: { text, ordinal, recipe: recipeId } }));
     });
   });
 
