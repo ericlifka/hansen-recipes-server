@@ -17,7 +17,8 @@ let unitConversions = {
   'pkg.': 'package',
   'lb.': 'lb',
   'qt.': 'qt',
-  'pt.': 'pt'
+  'pt.': 'pt',
+  'pts.': 'pt'
 };
 let mutations = [
   recipe => recipe.ingredients.forEach(ingredient => ingredient.ingredient = ingredient.ingredient.toLowerCase()),
@@ -26,7 +27,7 @@ let mutations = [
   recipe => recipe.steps = recipe.steps.filter(step => step.length > 0)
 ];
 
-let files = [ 'appetizers', 'bread', 'breakfast-for-dinner' ];
+let files = [ 'appetizers', 'bread', 'breakfast-for-dinner', 'desserts' ];
 let textBlobs = {};
 files.forEach(file => {
   textBlobs[ file ] = fs.readFileSync(path.join(__dirname, `./${file}.txt`), "utf8");

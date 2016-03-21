@@ -5,7 +5,7 @@ Apple Blueberry Crisp
 3/4 c. brown sugar
 1 stick butter
 1 c. oatmeal
-1/2c. flour
+1/2 c. flour
 2 t. cinnamon
 Spread apple slices in lightly greased 8” dish.
 Top with layer of berries; sprinkle lemon juice and water on.
@@ -435,7 +435,7 @@ Pumpkin Pie (Libby’s on can label)
 2 units eggs
 1 15_oz_can pumpkin
 12 oz. evaporated milk
-1 deep dish pie shell
+1 units deep dish pie shell
 Mix sugar, salt, cinnamon, ginger and cloves in small bowl.
 Beat eggs in and add pumpkin.
 Gradually add milk.
@@ -721,7 +721,7 @@ Hidden Treasure Cupcakes
 1/2 c. sugar
 1 pinch salt
 1 6_oz_pkg. chocolate chips
-1 1/2 c. flour
+1&1/2 c. flour
 1 c. sugar
 1/4 c. cocoa
 3/4 c. water
@@ -773,7 +773,7 @@ Brownies
 3/4 c. shortening
 1&1/2 c. sugar
 3 units eggs
-2&1/2 sq. chocolate
+2&1/2 squares chocolate
 1 c. flour
 1/2 t. baking powder
 1/2 t. salt
@@ -892,7 +892,7 @@ Jello Dirt Cups
 1 pkg. chocolate instant pudding
 8 oz. cool whip
 16 oz. oreos
-8-10 7 oz. plastic cups
+8-10 units 7 oz. plastic cups
 Pour milk into large bowl, add pudding mix and beat until well blended.
 Let sit 5 minutes.
 Stir in cool whip and half of the cookies.
@@ -1155,7 +1155,7 @@ Cool.
 Refrigerate 3 hours or overnight.
 
 Chocolate Turtle Cheesecake
-1 7_oz_pkg. caramels
+7 oz caramels
 1/4 c. evaporated milk
 3/4 c. chopped pecans, divided
 1 units 9” chocolate crumb pie crust
