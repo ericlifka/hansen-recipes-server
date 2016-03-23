@@ -1,5 +1,5 @@
 Yummy Yams
-1 large can sweet potatoes
+1 large_can sweet potatoes
 3/4 c. brown sugar
 1 tsp. salt
 Throw yams into casserole dish.
@@ -45,14 +45,14 @@ You can also add pork sausage.
 You can half this recipe.
 
 Pumpkin Pie
-1 unbaked pie shell (9”)
+1 units unbaked pie shell (9”)
 1/4 t. ground cloves
 3/4 c. sugar
-2 eggs
+2 units eggs
 1/2 t. salt
-1 3/4 c. pumpkin (15 oz. can)
+1&3/4 c. pumpkin (15 oz. can)
 1 t. ground cinnamon
-1 1/2 c. evaporated milk (12 oz. can)
+1&1/2 c. evaporated milk (12 oz. can)
 1/2 t. ginger
 Combine sugar, salt, cinnamon, ginger and cloves in small bowl.
 Beat eggs lightly in large bowl.
@@ -65,7 +65,7 @@ You may want to put it on a baking sheet in case it bakes over.
 If you use 2 shallow pies bake 15 min. at 425º, 350º for 20-30 minutes.
 
 Pumpkin Bread
-4 eggs
+4 units eggs
 1/2 t. baking powder
 2/3 c. soft butter
 2 t. baking soda
@@ -86,11 +86,11 @@ Turn onto racks and cool.
 Banana Bread
 1/2 c. butter
 1 c. sugar
-2 eggs
+2 units eggs
 2 c. flour
 1/2 c. milk
 1 t. soda
-3 bananas mashed
+3 units bananas mashed
 Cream butter and sugar.
 Add eggs.
 Add bananas.
@@ -101,10 +101,10 @@ Bake in greased loaf pan 1 hour 15 min. at 350º.
 Lemon Bread
 1 pkg. lemon cake mix
 1/2 c. oil
-1 small pkg. instant lemon pudding
+1 small_pkg. instant lemon pudding
 1 c. cold water
 1/2 c. poppy seeds
-4 eggs
+4 units eggs
 Mix all ingredients together and beat 4 min.
 Pour into 2 bread pans.
 Spray pans with Pam so bread comes out easier.
@@ -113,9 +113,9 @@ Cool and wrap in foil.
 
 Savory Chicken Bites
 8 oz. cream cheese, softened
-2- 8 oz. cans refrigerator crescent rolls
+2 8_oz_cans refrigerator crescent rolls
 1/2 t. lemon juice
-1 - 2 oz. jar chopped pimento, drained
+1 2_oz_jar chopped pimento, drained
 1/2 t. dried basil leaves, crushed
 1/3 c. finely chopped celery
 1/4 t. onion salt
@@ -140,7 +140,7 @@ Viva Mushrooms
 1 T. parsley flakes
 1/8 t. nutmeg
 2 T. dry onions
-1 1/2 T. flour
+1&1/2 T. flour
 1 T. prepared mustard
 1 c. heavy cream
 Place cleaned mushrooms in buttered casserole dish.
@@ -173,7 +173,7 @@ Heat up on top of stove.
 It takes about 15 minutes.
 
 Oyster Stew
-2 PTAs. oysters, including liquid
+2 PTAs oysters, including liquid
 2 T. finely chopped onion and garlic
 2-4 T. butter
 1/2 c. cream
@@ -223,13 +223,13 @@ Serve with HiHo crackers.
 
 Taco Pizza
 8 oz. cream cheese
-1 tomato, chopped
+1 units tomato, chopped
 8 oz. sour cream
-lettuce, chopped
+1 units lettuce, chopped
 1 pkg. taco seasoning
-shredded cheese
-black olive slices
-onion
+1 bag shredded cheese
+1 can black olive slices
+1 units onion
 Mix cream cheese, sour cream and taco seasoning.
 Spread onto large plate.
 Then layer lettuce, tomato, onion, cheese, and olives.
@@ -256,10 +256,10 @@ Fill eggs with stuff.
 Refrigerate.
 
 Cucumber with Beef
-1 cucumber
+1 units cucumber
 3-4 oz. cr. cheese (or more)
-Buddig corned beef
-Have cream cheese at room temperature.
+4 packages Buddig corned beef
+8 oz Have cream cheese at room temperature.
 I take the beef and dot each corner with cream cheese and top with another beef.
 You will need 1 package per cucumber.
 I get the beef all ready first.
@@ -272,16 +272,16 @@ You can also do this with a pickle.
 Grandma H. uses deli corned beef.
 
 Peanut Blossoms
-1 3/4 c. flour
+1&3/4 c. flour
 1/2 c. of both shortening and peanut butter
 1 t. baking soda
-1 egg
+1 units egg
 1/2 t. salt
 2 T. milk
 1/2 c. sugar
 1 t. vanilla extract
 1/2 c. brown sugar (packed)
-Chocolate candy kisses
+1 bag Chocolate candy kisses
 Combine all ingredients except candy.
 Shape dough into balls.
 Roll in sugar and place on cookie sheet.
@@ -290,7 +290,7 @@ Top each cookie with candy, pressing down firmly.
 
 Holiday Wreaths
 1/2 c. margarine
-30 large marshmallows
+30 units large marshmallows
 4 c. corn flakes
 Spray waxed paper and 2 spoons with Pam.
 Over low heat melt margarine and marshmallows.
@@ -315,7 +315,7 @@ Thumbprint Cookies
 1 c. flour
 1/4 c. brown sugar
 1/4 t. salt
-1 egg, separated
+1 units egg, separated
 3/4 c. chopped nuts
 Mix butter, shortening, sugar, egg yolk and vanilla.
 Work in flour and salt.
